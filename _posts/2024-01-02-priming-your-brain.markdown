@@ -18,7 +18,7 @@ In case my future self is feeling lazy, a quick reminder of the benefits of this
 
 And a warning: the [Forest of All Knowledge](https://www.lunarmobiscuit.com/the-forest-of-all-knowledge/) is an never-ending, ever-expanding fractal. Try to stick to a breadth-first search approach rather than a depth-first search. Your goal is to create a sketch that you can fill in as you take the class, not one really detailed portion. Basically, if you're anything like me, limit the number of tangents you go on!
 
-![A fractal image of hyperlinks between Wikipedia articles.](/assets/wikipedia_fractal.png)
+![A fractal image of hyperlinks between Wikipedia articles.](/assets/wikipedia_fractal.jpg)
 
 The Process:
 1. Gather resources. Some good places to look are your Canvas/class webpage and the textbook. If they're lacking, you can usually find syllabi for similar classes at other universities with a quick online search.
