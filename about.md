@@ -4,10 +4,10 @@ title: About
 permalink: /about/
 ---
 
-Hello there! I'm Dawson Ren, currently a student studying Industrial Engineering at Northwestern University. I'm currently applying to Operations Research PhD programs as well.
+Hello there! I'm Dawson Ren, a 2nd yearPhD student in the Department of Industrial Engineering and Management Sciences at Northwestern University.
 
-I'm a firm believer that the things we take for granted are often much more than they seem. I also believe that in the age of information, the answers are closer than ever before. This blog is an outlet for my curiosity, a place where I can put down all those "what if...?" conversations.
+My research interests are primarily in predictive analytics in machine learning. My current work focuses on developing methods for [interpretable ML](https://christophm.github.io/interpretable-ml-book/ale.html). I'm also a fellow for the [Predictive Sciences and Engineering Design (PSED) cluster](https://www.northwestern.edu/predictive-science-engineering-design/index.html), where I'm training predictive models to learn the structure-property relationships in [thermoelectric materials](https://advanced.onlinelibrary.wiley.com/doi/full/10.1002/adfm.202405413).
 
-Right now, I'm curious about how we can leverage OR and ML techniques for decision-making under uncertainty. If you don't have any background in these areas, don't worry - I promise that you'll still learn something worthwhile, and see the world a little differently because of it.
+In my free time, I enjoy running, practicing the guitar, and playing board games.
 
 ![A picture from my favorite state park in the US, Valley of Fire National Park in Nevada.](/assets/background.png)
