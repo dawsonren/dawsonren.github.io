@@ -1,0 +1,22 @@
+# build output
+dist/
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+
+# environment variables
+.env
+.env.production
+
+# macOS
+.DS_Store
+
+# leftovers from the old Jekyll site
+_site/
+.jekyll-cache/
+chruby-*/
