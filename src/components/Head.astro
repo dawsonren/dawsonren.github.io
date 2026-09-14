@@ -1,0 +1,67 @@
+---
+import '../styles/global.css';
+import { SITE } from '../site';
+
+interface Props {
+  /** Page name. Omit on the homepage, where the title is just the site name. */
+  title?: string;
+  description: string;
+  type?: 'website' | 'article';
+  noindex?: boolean;
+}
+
+const { title, description, type = 'website', noindex = false } = Astro.props;
+
+const fullTitle = title ? `${title} — ${SITE.name}` : SITE.name;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL('/og.png', Astro.site).href;
+
+const person = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: SITE.name,
+  url: new URL('/', Astro.site).href,
+  email: `mailto:${SITE.email}`,
+  sameAs: [SITE.linkedin, SITE.github],
+  jobTitle: SITE.jobTitle,
+  alumniOf: {
+    '@type': 'CollegeOrUniversity',
+    name: 'Northwestern University',
+  },
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Chicago',
+    addressRegion: 'IL',
+    addressCountry: 'US',
+  },
+};
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+{noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
+<link rel="icon" href="/favicon.png" type="image/png" />
+<link rel="sitemap" href="/sitemap-index.xml" />
+
+<meta property="og:site_name" content={SITE.name} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Dawson Ren — I build tools that help organizations make better decisions." />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<!-- css2 splits faces by unicode-range, so browsers only download the latin files. -->
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..600,40,0&family=Inter:wght@400..600&display=swap"
+/>
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(person)} />

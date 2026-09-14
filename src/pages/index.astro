@@ -1,0 +1,331 @@
+---
+import { existsSync } from 'node:fs';
+import path from 'node:path';
+import Base from '../layouts/Base.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { SITE } from '../site';
+import { formatDate } from '../format';
+
+// Drop a square 800×800 JPEG at public/img/headshot.jpg and rebuild; until then a
+// placeholder box of the same size keeps the layout intact.
+const hasHeadshot = existsSync(path.join(process.cwd(), 'public/img/headshot.jpg'));
+
+const featured = {
+  href: '/writing/manager-and-rubber-duck/',
+  title: 'The Manager and the Rubber Duck',
+  date: '2023-11-02',
+  standfirst:
+    'On the difference between explaining something simply and explaining it convincingly — and why abstraction is a separate skill from simplification.',
+};
+---
+
+<Base description="Dawson Ren builds tools that help organizations make better decisions — applied AI/ML, statistics, and production software. Based in Chicago.">
+  <section class="wrap hero" aria-labelledby="hero-title">
+    <div class="hero-text">
+      <h1 id="hero-title">I build tools that help organizations make better decisions.</h1>
+      <p class="lede">
+        I'm Dawson Ren. I just finished a master's in Industrial Engineering and Management
+        Sciences at Northwestern, and I'm looking for my next role in Chicago — technical work
+        close to the customer, where the modeling is hard and the point is the decision it
+        makes easier.
+      </p>
+      <div class="actions">
+        <a class="btn" href="#work">See my work</a>
+        <a class="arrow-link" href="/resume/">Resume</a>
+        <a class="arrow-link" href={SITE.linkedin}>LinkedIn</a>
+      </div>
+      <p class="small muted">Chicago, IL · Applied AI/ML · Operations · Product</p>
+    </div>
+    <div class="hero-photo">
+      {hasHeadshot ? (
+        <img class="headshot" src="/img/headshot.jpg" alt="Dawson Ren" width="800" height="800" loading="eager" fetchpriority="high" />
+      ) : (
+        <div class="headshot placeholder" role="img" aria-label="Dawson Ren">
+          <span aria-hidden="true">DR</span>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <section class="wrap section" id="work" aria-labelledby="work-title">
+    <h2 id="work-title">Selected work</h2>
+    <div class="cards">
+      <ProjectCard
+        eyebrow="Reinsurance Group of America · 2026"
+        title="A fairness testing platform for AI models in life insurance"
+        href="/projects/rga-fairness-platform/"
+        summary="Sole engineer on a tool that tests predictive and AI models for discrimination. Idea to production in ten weeks, now rolling out to a 70-person global data science organization."
+        meta={['Python', 'React', 'PySpark', 'Databricks']}
+      />
+      <ProjectCard
+        eyebrow="Northwestern University · 2024–2026"
+        title="Local ALE: stable explanations for black-box models"
+        href="/projects/local-ale/"
+        summary="A path-integral approach to local feature attribution that cuts the variance of individual explanations by up to 5×, without SHAP's independence assumption."
+        meta={['Research', 'Python', 'Interpretable ML']}
+      />
+    </div>
+  </section>
+
+  <section class="wrap section" aria-labelledby="also-title">
+    <h2 id="also-title">Also</h2>
+    <ul class="also">
+      <li>
+        <h3>Diagnostics at Caterpillar</h3>
+        <p class="muted">
+          Built and validated a multiclass XGBoost classifier on 3M+ oil samples, improving
+          absolute F1 by 15 points over the rules-based system used at 70+ fluid analysis labs
+          worldwide.
+        </p>
+      </li>
+      <li>
+        <h3>GPU molecular dynamics</h3>
+        <p class="muted">
+          Learned high-performance GPU simulation from scratch to model silicon grain boundaries
+          for next-generation thermoelectric materials, in collaboration with Materials Science
+          and Mechanical Engineering.
+        </p>
+      </li>
+      <li>
+        <h3>Teaching</h3>
+        <p class="muted">
+          Designed and taught eight ML lab sessions for Northwestern's MS in Machine Learning and
+          Data Science, a statistics bootcamp for the incoming IEMS PhD cohort, and educational
+          tools for Kellogg's MBA Operations Management course.
+        </p>
+      </li>
+    </ul>
+  </section>
+
+  <section class="wrap section" aria-labelledby="writing-title">
+    <h2 id="writing-title">Writing</h2>
+    <article class="featured">
+      <h3><a href={featured.href}>{featured.title}</a></h3>
+      <p class="small muted"><time datetime={featured.date}>{formatDate(featured.date)}</time></p>
+      <p class="standfirst">{featured.standfirst}</p>
+    </article>
+    <p class="small"><a class="arrow-link" href="/archive/">Earlier writing, from my student years</a></p>
+  </section>
+
+  <section class="about full-bleed" aria-labelledby="about-title">
+    <div class="wrap">
+      <figure>
+        <picture>
+          <source media="(max-width: 700px)" srcset="/img/valley-of-fire-1000.jpg" />
+          <img
+            src="/img/valley-of-fire.jpg"
+            alt="Red sandstone formations at Valley of Fire State Park, Nevada."
+            width="2000"
+            height="850"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
+        <figcaption class="small muted">Valley of Fire State Park, Nevada.</figcaption>
+      </figure>
+      <div class="about-text">
+        <h2 id="about-title">About</h2>
+        <p>
+          I studied Industrial Engineering at Northwestern twice — a bachelor's in 2024, then a
+          master's alongside two years of PhD research in machine learning and materials
+          simulation. What I kept returning to was the part where a method meets a person who has
+          to act on it.
+        </p>
+        <p>
+          Outside work I run, play guitar badly and persistently, and will happily talk anyone
+          into a long board game. If you're in Chicago and want to compare notes, my inbox is
+          open.
+        </p>
+        <ul class="dot-list">
+          <li><a href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
+          <li><a href={SITE.linkedin}>LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* Hero ------------------------------------------------------------ */
+  .hero {
+    display: grid;
+    gap: var(--s-6);
+    padding-top: clamp(var(--s-7), 8vw, var(--s-9));
+  }
+
+  .hero h1 {
+    font-size: var(--fs-display);
+    line-height: 1.06;
+    font-weight: 500;
+    max-width: 16ch;
+  }
+
+  .lede {
+    margin-top: var(--s-5);
+    max-width: 58ch;
+    font-size: 1.125rem;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--s-4) var(--s-5);
+    margin-top: var(--s-6);
+  }
+
+  .actions + p {
+    margin-top: var(--s-5);
+  }
+
+  .hero-photo {
+    order: -1;
+    width: 100%;
+    max-width: 200px;
+    margin-inline: auto;
+  }
+
+  .headshot {
+    width: 100%;
+    aspect-ratio: 1;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    object-fit: cover;
+  }
+
+  .placeholder {
+    display: grid;
+    place-items: center;
+    background: var(--surface);
+  }
+
+  .placeholder span {
+    font-family: var(--font-display);
+    font-variation-settings: 'SOFT' 40, 'WONK' 0;
+    font-size: clamp(2.5rem, 7vw, 4.5rem);
+    letter-spacing: -0.02em;
+    color: var(--muted);
+  }
+
+  @media (min-width: 768px) {
+    .hero {
+      grid-template-columns: 3fr 2fr;
+      align-items: center;
+      gap: var(--s-8);
+    }
+
+    .hero-photo {
+      order: 0;
+      max-width: 380px;
+      margin-inline: auto 0;
+    }
+  }
+
+  /* Sections -------------------------------------------------------- */
+  .section {
+    padding-top: var(--section);
+  }
+
+  .section > h2 {
+    margin-bottom: var(--s-6);
+  }
+
+  .cards {
+    display: grid;
+    gap: var(--s-5);
+  }
+
+  /* Also ------------------------------------------------------------ */
+  .also {
+    list-style: none;
+    padding: 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .also li {
+    display: grid;
+    gap: var(--s-2) var(--s-6);
+    padding-block: var(--s-5);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .also p {
+    max-width: 62ch;
+  }
+
+  @media (min-width: 768px) {
+    .also li {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+      align-items: baseline;
+    }
+  }
+
+  /* Writing --------------------------------------------------------- */
+  .featured {
+    max-width: var(--measure);
+  }
+
+  .featured h3 {
+    font-size: clamp(1.25rem, 2.4vw, 1.375rem);
+  }
+
+  .featured h3 a {
+    color: var(--ink);
+    text-decoration-color: var(--rule);
+  }
+
+  .featured h3 a:hover {
+    color: var(--accent);
+    text-decoration-color: currentColor;
+  }
+
+  .featured .small {
+    margin-top: var(--s-1);
+  }
+
+  .standfirst {
+    margin-top: var(--s-3);
+  }
+
+  .featured + p {
+    margin-top: var(--s-6);
+  }
+
+  /* About ----------------------------------------------------------- */
+  .about {
+    margin-top: var(--section);
+    padding-block: var(--section);
+    background: var(--surface);
+    border-block: 1px solid var(--rule);
+  }
+
+  figure {
+    margin: 0;
+  }
+
+  figure img {
+    width: 100%;
+    aspect-ratio: 21 / 9;
+    max-height: 340px;
+    object-fit: cover;
+    border-radius: var(--radius);
+  }
+
+  figcaption {
+    margin-top: var(--s-2);
+  }
+
+  .about-text {
+    max-width: var(--measure);
+    margin-top: var(--s-7);
+  }
+
+  .about-text h2 {
+    margin-bottom: var(--s-4);
+  }
+
+  .about-text p + p,
+  .about-text ul {
+    margin-top: var(--s-4);
+  }
+</style>
