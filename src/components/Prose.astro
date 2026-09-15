@@ -71,4 +71,50 @@
     border: 1px solid var(--rule);
     border-radius: var(--radius);
   }
+
+  /* Tables: booktabs-style — firm rules at the top, under the header, and at the bottom;
+     hairlines between rows; no vertical lines. `display: block` lets a wide table scroll
+     on its own instead of widening the page. */
+  .prose :global(table) {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+    line-height: 1.45;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .prose :global(thead th) {
+    font-weight: 600;
+    vertical-align: bottom;
+    border-top: 1px solid var(--muted);
+    border-bottom: 1px solid var(--muted);
+  }
+
+  /* Browsers centre <th> by default; left-align unless the Markdown set an alignment. */
+  .prose :global(th:not([align]):not([style])) {
+    text-align: left;
+  }
+
+  .prose :global(th),
+  .prose :global(td) {
+    padding: 0.55em 1.1em;
+  }
+
+  .prose :global(:is(th, td):first-child) {
+    padding-left: 0;
+  }
+
+  .prose :global(:is(th, td):last-child) {
+    padding-right: 0;
+  }
+
+  .prose :global(tbody td) {
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .prose :global(tbody tr:last-child td) {
+    border-bottom-color: var(--muted);
+  }
 </style>

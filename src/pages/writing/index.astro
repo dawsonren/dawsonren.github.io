@@ -2,13 +2,19 @@
 import Base from '../../layouts/Base.astro';
 import { formatDate } from '../../format';
 
-const posts = [
+// Undated entries are unfinished; they show "Under construction" where the date would be.
+const posts: { href: string; title: string; date?: string; summary: string }[] = [
   {
     href: '/writing/manager-and-rubber-duck/',
     title: 'The Manager and the Rubber Duck',
     date: '2023-11-02',
     summary:
-      'On the difference between explaining something simply and explaining it convincingly — and why abstraction is a separate skill from simplification.',
+      'On the difference between explaining something correctly and explaining it both correctly and convincingly.',
+  },
+  {
+    href: '/writing/influences/',
+    title: 'Influences',
+    summary: 'People whose work shaped how I think about models and decisions, and what I took from each.',
   },
 ];
 ---
@@ -23,7 +29,9 @@ const posts = [
       {posts.map((post) => (
         <li>
           <h2><a href={post.href}>{post.title}</a></h2>
-          <p class="mono"><time datetime={post.date}>{formatDate(post.date)}</time></p>
+          <p class="mono">
+            {post.date ? <time datetime={post.date}>{formatDate(post.date)}</time> : 'Under construction'}
+          </p>
           <p class="summary">{post.summary}</p>
         </li>
       ))}

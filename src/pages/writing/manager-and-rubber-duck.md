@@ -2,7 +2,7 @@
 layout: ../../layouts/Article.astro
 kind: writing
 title: "The Manager and the Rubber Duck"
-description: "On the difference between explaining something simply and explaining it convincingly, and why abstraction is a separate skill from simplification."
+description: "On the difference between explaining something correctly and explaining it both correctly and convincingly."
 date: 2023-11-02
 ---
 

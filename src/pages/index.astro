@@ -16,7 +16,7 @@ const featured = {
   title: 'The Manager and the Rubber Duck',
   date: '2023-11-02',
   standfirst:
-    'On the difference between explaining something simply and explaining it convincingly — and why abstraction is a separate skill from simplification.',
+    'On the difference between explaining something correctly and explaining it both correctly and convincingly.',
 };
 ---
 
@@ -27,9 +27,7 @@ const featured = {
         <h1 id="hero-title">I build tools that help organizations make better decisions.</h1>
         <p class="lede">
           I'm Dawson Ren. I just finished a master's in Industrial Engineering and Management
-          Sciences at Northwestern, and I'm looking for my next role in Chicago — technical work
-          close to the customer, where the modeling is hard and the point is the decision it
-          makes easier.
+          Sciences at Northwestern, and I'm looking for data scientist, forward deployed engineer, technical product manager, or any other roles that are close to the customer and focused on data-driven decision-making.
         </p>
         <div class="actions">
           <a class="btn" href="#work">See my work</a>
@@ -61,32 +59,38 @@ const featured = {
         meta={['Python', 'React', 'PySpark', 'Databricks']}
       />
       <ProjectCard
-        eyebrow="Northwestern University · 2024–2026"
+        eyebrow="Northwestern University · 2025–2026"
         title="Local ALE: stable explanations for black-box models"
         href="/projects/local-ale/"
-        summary="A path-integral approach to local feature attribution that cuts the variance of individual explanations by up to 5×, without SHAP's independence assumption."
+        summary="A local feature attribution method that reduces the variance of individual explanations by up to 5x compared to SHAP when variables are highly correlated."
         meta={['Research', 'Python', 'Interpretable ML']}
+      />
+      <ProjectCard
+        eyebrow="Northwestern University · 2024–2025"
+        title="Learning optimal free shipping thresholds"
+        href="/projects/free-shipping/"
+        summary="Amazon's free shipping threshold incentives customers to order up to the threshold, which biases the data you'd use to set the threshold. We develop an algorithm that corrects for this."
+        meta={['Research', 'Revenue Management', 'Online Learning']}
       />
     </div>
   </section>
 
   <section class="wrap section" aria-labelledby="also-title">
-    <h2 id="also-title">Also</h2>
+    <h2 id="also-title">Other Work</h2>
     <ul class="also">
       <li>
-        <h3>Diagnostics at Caterpillar</h3>
+        <h3>Oil Severity Diagnostics at Caterpillar</h3>
         <p class="muted">
           Built and validated a multiclass XGBoost classifier on 3M+ oil samples, improving
-          absolute F1 by 15 points over the rules-based system used at 70+ fluid analysis labs
-          worldwide.
+          absolute F1 by 15 points over the rules-based system used at 70+ <a href="https://www.cat.com/en_US/support/maintenance/sos-services.html" target="_blank" rel="noopener noreferrer">fluid analysis labs
+          worldwide</a>.
         </p>
       </li>
       <li>
-        <h3>GPU molecular dynamics</h3>
+        <h3>GPU-accelerated molecular dynamics simulation</h3>
         <p class="muted">
-          Learned high-performance GPU simulation from scratch to model silicon grain boundaries
-          for next-generation thermoelectric materials, in collaboration with Materials Science
-          and Mechanical Engineering.
+          Learned high-performance GPU simulation from zero to model silicon grain boundaries
+          for next-generation thermoelectric materials, supported by the <a href="https://www.mccormick.northwestern.edu/predictive-science-engineering-design/" target="_blank" rel="noopener noreferrer">Predictive Sciences and Engineering Design Graduate Program</a>.
         </p>
       </li>
       <li>
@@ -94,7 +98,7 @@ const featured = {
         <p class="muted">
           Designed and taught eight ML lab sessions for Northwestern's MS in Machine Learning and
           Data Science, a statistics bootcamp for the incoming IEMS PhD cohort, and educational
-          tools for Kellogg's MBA Operations Management course.
+          tools for Kellogg's MBA <a href="https://queueing.vercel.app" target="_blank" rel="noopener noreferrer">Operations</a> <a href="https://qr-backorder.vercel.app" target="_blank" rel="noopener noreferrer">Management</a> course.
         </p>
       </li>
     </ul>
@@ -129,20 +133,11 @@ const featured = {
       <div class="about-text">
         <h2 id="about-title">About</h2>
         <p>
-          I studied Industrial Engineering at Northwestern twice — a bachelor's in 2024, then a
-          master's alongside two years of PhD research in machine learning and materials
-          simulation. What I kept returning to was the part where a method meets a person who has
-          to act on it.
+          Born in New Jersey, grew up in St. Louis, transplant to Chicago. I've recently found myself returning to the intersection of software and decision-making, which is what made me excited about studying Industrial Engineering.
         </p>
         <p>
-          Outside work I run, play guitar badly and persistently, and will happily talk anyone
-          into a long board game. If you're in Chicago and want to compare notes, my inbox is
-          open.
+          Outside of work I enjoy running by Lake Michigan, playing guitar, and cooking for my friends. Feel free to send me an email! Also open to grabbing coffee for those in the Chicagoland area.
         </p>
-        <ul class="dot-list">
-          <li><a href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
-          <li><a href={SITE.linkedin}>LinkedIn</a></li>
-        </ul>
       </div>
     </div>
   </section>
@@ -169,10 +164,22 @@ const featured = {
     font-size: 1.125rem;
   }
 
-  /* The field runs behind the hero text; a ground-coloured halo clears boundary strokes
-     from the glyphs without hiding the field around them. */
-  .hero-text :is(.lede, .mono, .arrow-link) {
-    text-shadow: 0 0 2px var(--bg), 0 0 6px var(--bg), 0 0 10px var(--bg);
+  /* The field fades in from behind the text to full strength around the photo, so the copy
+     sits on near-plain ground. Stacked (mobile): strong behind the photo at the top, fading
+     out by the headline. The stops track the layout below: the photo is 200px under ~48px
+     of padding. */
+  :global(.grain--hero svg) {
+    --fade: linear-gradient(to bottom, #000 200px, rgb(0 0 0 / .15) 400px);
+    -webkit-mask-image: var(--fade);
+    mask-image: var(--fade);
+  }
+
+  /* Side by side: the content column is centred, so measure from the centre. The text
+     column ends 30–70px right of centre and the photo starts 95–160px right of it. */
+  @media (min-width: 768px) {
+    :global(.grain--hero svg) {
+      --fade: linear-gradient(to right, rgb(0 0 0 / .15) calc(50% + 40px), #000 calc(50% + 180px));
+    }
   }
 
   .actions {

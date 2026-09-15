@@ -23,7 +23,7 @@ npm run preview   # serve the built dist/ locally
 | `src/pages/resume.astro` | Resume as HTML, transcribed from the PDF. Update both together |
 | `src/pages/projects/*.md` | Case studies |
 | `src/pages/writing/`, `src/pages/archive/` | Current and archived posts |
-| `src/pages/influences.astro` | Influences. Each line says what you took from the work, never who you know |
+| `src/pages/writing/influences.astro` | Influences (under construction). Each line says what you took from the work, never who you know |
 | `src/layouts/Article.astro` | Layout for case studies and posts (set via `layout:` front matter) |
 | `src/styles/global.css` | Design tokens, base styles, and the grain motif's CSS |
 | `src/components/GrainField.astro` | The grain field: `hero` on the homepage, `band` on every other page. At most one per page |

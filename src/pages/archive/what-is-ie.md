@@ -2,7 +2,7 @@
 layout: ../../layouts/Article.astro
 kind: archive
 title: "How to Explain Industrial Engineering to Your Family and Friends"
-description: "A short explanation of what industrial engineering is, where it came from, and why it's hard to explain, written in 2023 for fellow Northwestern students."
+description: "I got tired of explaining what IEMS is again and again, so I decided to write this as a student."
 date: 2023-10-10
 ---
 
