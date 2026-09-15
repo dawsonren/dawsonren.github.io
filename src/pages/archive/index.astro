@@ -38,7 +38,7 @@ const posts = [
       {posts.map((post) => (
         <li>
           <h2><a href={post.href}>{post.title}</a></h2>
-          <p class="small muted"><time datetime={post.date}>{formatDate(post.date)}</time></p>
+          <p class="mono"><time datetime={post.date}>{formatDate(post.date)}</time></p>
           <p class="summary">{post.summary}</p>
         </li>
       ))}
@@ -48,7 +48,7 @@ const posts = [
 
 <style>
   .page {
-    padding-top: clamp(var(--s-7), 7vw, var(--s-9));
+    padding-top: clamp(var(--s-6), 5vw, var(--s-8));
   }
 
   .intro {
@@ -86,7 +86,7 @@ const posts = [
     text-decoration-color: currentColor;
   }
 
-  .posts .small {
+  .posts .mono {
     margin-top: var(--s-1);
   }
 

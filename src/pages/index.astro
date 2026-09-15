@@ -3,6 +3,7 @@ import { existsSync } from 'node:fs';
 import path from 'node:path';
 import Base from '../layouts/Base.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+import GrainField from '../components/GrainField.astro';
 import { SITE } from '../site';
 import { formatDate } from '../format';
 
@@ -19,33 +20,35 @@ const featured = {
 };
 ---
 
-<Base description="Dawson Ren builds tools that help organizations make better decisions — applied AI/ML, statistics, and production software. Based in Chicago.">
-  <section class="wrap hero" aria-labelledby="hero-title">
-    <div class="hero-text">
-      <h1 id="hero-title">I build tools that help organizations make better decisions.</h1>
-      <p class="lede">
-        I'm Dawson Ren. I just finished a master's in Industrial Engineering and Management
-        Sciences at Northwestern, and I'm looking for my next role in Chicago — technical work
-        close to the customer, where the modeling is hard and the point is the decision it
-        makes easier.
-      </p>
-      <div class="actions">
-        <a class="btn" href="#work">See my work</a>
-        <a class="arrow-link" href="/resume/">Resume</a>
-        <a class="arrow-link" href={SITE.linkedin}>LinkedIn</a>
-      </div>
-      <p class="small muted">Chicago, IL · Applied AI/ML · Operations · Product</p>
-    </div>
-    <div class="hero-photo">
-      {hasHeadshot ? (
-        <img class="headshot" src="/img/headshot.jpg" alt="Dawson Ren" width="800" height="800" loading="eager" fetchpriority="high" />
-      ) : (
-        <div class="headshot placeholder" role="img" aria-label="Dawson Ren">
-          <span aria-hidden="true">DR</span>
+<Base band={false} description="Dawson Ren builds tools that help organizations make better decisions — applied AI/ML, statistics, and production software. Based in Chicago.">
+  <GrainField variant="hero">
+    <section class="wrap hero" aria-labelledby="hero-title">
+      <div class="hero-text">
+        <h1 id="hero-title">I build tools that help organizations make better decisions.</h1>
+        <p class="lede">
+          I'm Dawson Ren. I just finished a master's in Industrial Engineering and Management
+          Sciences at Northwestern, and I'm looking for my next role in Chicago — technical work
+          close to the customer, where the modeling is hard and the point is the decision it
+          makes easier.
+        </p>
+        <div class="actions">
+          <a class="btn" href="#work">See my work</a>
+          <a class="arrow-link" href="/resume/">Resume</a>
+          <a class="arrow-link" href={SITE.linkedin}>LinkedIn</a>
         </div>
-      )}
-    </div>
-  </section>
+        <p class="mono">Chicago, IL · Applied AI/ML · Operations · Product</p>
+      </div>
+      <div class="hero-photo">
+        {hasHeadshot ? (
+          <img class="headshot" src="/img/headshot.jpg" alt="Dawson Ren" width="800" height="800" loading="eager" fetchpriority="high" />
+        ) : (
+          <div class="headshot placeholder" role="img" aria-label="Dawson Ren">
+            <span aria-hidden="true">DR</span>
+          </div>
+        )}
+      </div>
+    </section>
+  </GrainField>
 
   <section class="wrap section" id="work" aria-labelledby="work-title">
     <h2 id="work-title">Selected work</h2>
@@ -101,7 +104,7 @@ const featured = {
     <h2 id="writing-title">Writing</h2>
     <article class="featured">
       <h3><a href={featured.href}>{featured.title}</a></h3>
-      <p class="small muted"><time datetime={featured.date}>{formatDate(featured.date)}</time></p>
+      <p class="mono"><time datetime={featured.date}>{formatDate(featured.date)}</time></p>
       <p class="standfirst">{featured.standfirst}</p>
     </article>
     <p class="small"><a class="arrow-link" href="/archive/">Earlier writing, from my student years</a></p>
@@ -121,7 +124,7 @@ const featured = {
             decoding="async"
           />
         </picture>
-        <figcaption class="small muted">Valley of Fire State Park, Nevada.</figcaption>
+        <figcaption class="mono">Valley of Fire State Park, Nevada.</figcaption>
       </figure>
       <div class="about-text">
         <h2 id="about-title">About</h2>
@@ -150,7 +153,7 @@ const featured = {
   .hero {
     display: grid;
     gap: var(--s-6);
-    padding-top: clamp(var(--s-7), 8vw, var(--s-9));
+    padding-block: clamp(var(--s-7), 7vw, var(--s-9));
   }
 
   .hero h1 {
@@ -164,6 +167,12 @@ const featured = {
     margin-top: var(--s-5);
     max-width: 58ch;
     font-size: 1.125rem;
+  }
+
+  /* The field runs behind the hero text; a ground-coloured halo clears boundary strokes
+     from the glyphs without hiding the field around them. */
+  .hero-text :is(.lede, .mono, .arrow-link) {
+    text-shadow: 0 0 2px var(--bg), 0 0 6px var(--bg), 0 0 10px var(--bg);
   }
 
   .actions {
@@ -200,8 +209,7 @@ const featured = {
   }
 
   .placeholder span {
-    font-family: var(--font-display);
-    font-variation-settings: 'SOFT' 40, 'WONK' 0;
+    font-family: var(--display);
     font-size: clamp(2.5rem, 7vw, 4.5rem);
     letter-spacing: -0.02em;
     color: var(--muted);
@@ -279,7 +287,7 @@ const featured = {
     text-decoration-color: currentColor;
   }
 
-  .featured .small {
+  .featured .mono {
     margin-top: var(--s-1);
   }
 

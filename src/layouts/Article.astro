@@ -37,14 +37,14 @@ const back = {
       <header class="article-head">
         <h1>{title}</h1>
         {kind === 'project' ? (
-          <ul class="dot-list meta">
+          <ul class="dot-list meta mono">
             {meta.map((item) => <li>{item}</li>)}
           </ul>
         ) : (
-          date && <p class="meta"><time datetime={new Date(date).toISOString().slice(0, 10)}>{formatDate(date)}</time></p>
+          date && <p class="meta mono"><time datetime={new Date(date).toISOString().slice(0, 10)}>{formatDate(date)}</time></p>
         )}
         {stack.length > 0 && (
-          <p class="stack small"><span class="muted">Stack:</span> {stack.join(', ')}</p>
+          <p class="stack mono">Stack · {stack.join(', ')}</p>
         )}
       </header>
 
@@ -66,7 +66,7 @@ const back = {
 
 <style>
   .article {
-    padding-top: clamp(var(--s-7), 7vw, var(--s-9));
+    padding-top: clamp(var(--s-6), 5vw, var(--s-8));
   }
 
   /* Width set once here, at body size: `ch` in the smaller callout text would be narrower. */
@@ -80,12 +80,10 @@ const back = {
 
   .meta {
     margin-top: var(--s-4);
-    color: var(--muted);
-    font-size: 1rem;
   }
 
   .stack {
-    margin-top: var(--s-2);
+    margin-top: var(--s-1);
   }
 
   .callout {

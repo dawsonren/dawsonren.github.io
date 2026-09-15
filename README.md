@@ -23,13 +23,29 @@ npm run preview   # serve the built dist/ locally
 | `src/pages/resume.astro` | Resume as HTML, transcribed from the PDF. Update both together |
 | `src/pages/projects/*.md` | Case studies |
 | `src/pages/writing/`, `src/pages/archive/` | Current and archived posts |
+| `src/pages/influences.astro` | Influences. Each line says what you took from the work, never who you know |
 | `src/layouts/Article.astro` | Layout for case studies and posts (set via `layout:` front matter) |
-| `src/styles/global.css` | Design tokens and base styles |
+| `src/styles/global.css` | Design tokens, base styles, and the grain motif's CSS |
+| `src/components/GrainField.astro` | The grain field: `hero` on the homepage, `band` on every other page. At most one per page |
+| `src/generated/` | Grain geometry and neighbour CSS, written by `scripts/gen-grain.py`. Don't edit by hand |
 | `src/site.ts` | Name, email, and profile links used across the site |
 | `public/resume/Dawson-Ren-Resume.pdf` | The linked resume PDF. **Keep this filename**, since it's linked from elsewhere |
 | `public/img/headshot.jpg` | Homepage photo (square, 800×800). If it's missing, a placeholder box is shown |
 | `public/og.png` | 1200×630 social preview card |
+| `public/favicon.png`, `apple-touch-icon.png`, `icon-512.png` | The triple-junction mark at 32, 180, and 512px |
 | `astro.config.mjs` | Site URL, sitemap, and redirects from the old Jekyll post URLs |
+
+## Regenerating the grain field
+
+The field is committed, so the build needs no Python. To make a new one, change `SEED` (or
+the lattice constants) in `scripts/gen-grain.py` and run it from the repo root:
+
+```sh
+python -m venv .venv && .venv/bin/pip install numpy scipy shapely
+.venv/bin/python scripts/gen-grain.py   # rewrites src/generated/grain.json and anneal.css
+```
+
+`public/og.png` embeds the field, so regenerate it too if the field changes.
 
 ## Deploying
 

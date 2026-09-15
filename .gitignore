@@ -20,3 +20,7 @@ npm-debug.log*
 _site/
 .jekyll-cache/
 chruby-*/
+
+# local Python env for scripts/gen-grain.py
+.venv/
+__pycache__/
